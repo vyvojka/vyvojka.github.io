@@ -1,0 +1,85 @@
+<div class="px2 pt1 pb1 hgh">
+  <div class="crl">
+
+    <div class="row">
+      <div class="col">
+        {% if page.lang == "sk" %}
+          <p>Práce</p>
+        {% else %}
+          <p>Work</p>
+        {% endif %}
+      </div>
+    </div>
+
+  {% assign pages = site.pages | sort: 'order' | reverse %}
+
+  {% comment %} Count pages {% endcomment %}
+  {% assign i = 0 %}
+  {% for p in pages %}
+    {% if p.group == "project" %}
+      {% if p.lang == page.lang and p.label and p.thumbnail and p.work_tile != false %}
+        {% assign i = i | plus: 1 %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% assign is = i | minus: 1 %}
+
+  {% comment %} loop through pages {% endcomment %}
+  {% assign j = 0 %}
+  {% for p in pages %}
+    {% if p.group == "project" %}
+      {% if p.lang == page.lang and p.label and p.thumbnail and p.work_tile != false %}
+
+        {% assign mod = j | modulo: 3 %}
+
+        {% if mod == 0 and  j > 1 %}
+            {% comment %} modulo row end {% endcomment %}
+            </div>
+        {% endif %}
+
+        {% if mod == 0 %}
+            {% comment %} modulo row start {% endcomment %}
+            <div class="row">
+        {% endif %}
+
+          <div class="col c4">
+
+            {% if (page.url == p.url) %}
+              <a class="act" href="{{ p.url | prepend: site.baseurl }}">
+            {% else %}
+              <a href="{{ p.url | prepend: site.baseurl }}">
+            {% endif %}
+
+              <div class="boy">
+                {% assign ttl = p.title | replace: ' ', ' ' %}
+                {% include image33vw.html basename=p.thumbnail alt=ttl %}
+
+                <svg class="arw w30" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 300 300" width="300" height="300">
+                  <circle fill="none" stroke="#0057ff" stroke-width="3" stroke-miterlimit="10" cx="150" cy="150" r="140"></circle>
+                  <path fill="none" stroke="#0057ff" stroke-width="3" stroke-miterlimit="10" d="M152 132 186 149 186 151 152 168"></path>
+                  <line fill="none" stroke="#0057ff" stroke-width="3" stroke-miterlimit="10" x1="186" y1="150" x2="118" y2="150"></line>
+                </svg>
+              </div>
+
+              {% if (page.url == p.url) %}
+                <div class="act py05">{{ p.label }}</div>
+              {% else %}
+                <div class="py05">{{ p.label }}</div>
+              {% endif %}
+
+            </a>
+          </div>
+
+        {% if j == is %}
+            {% comment %} modulo last row end {% endcomment %}
+            </div>
+        {% endif %}
+
+        {% assign j = j | plus: 1 %}
+
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  </div>
+</div>

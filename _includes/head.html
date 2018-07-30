@@ -1,0 +1,73 @@
+<!-- Get values from main index.html file -->
+{% assign ind = (site.pages | sort: 'order' | where: 'group' , 'index' | where: 'lang' , page.lang) %}
+{% assign index_title = ind[0].title %}
+{% assign index_subtitle = ind[0].subtitle %}
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+<!-- Title -->
+{% if index_title %}
+<title>{% if page.group == "index" %}{{ index_title }}{% else %}{{ index_title }} — {{ page.title }}{% endif %}</title>
+{% else %}
+<title>{% if page.group == "index" %}{{ site.title }} — {{ site.subtitle }}{% else %}{{ site.title }} — {{ page.title }}{% endif %}</title>
+{% endif %}
+
+<!-- Description -->
+{% if page.description %}
+<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ page.description }}{% endif %}">
+{% endif %}
+
+<!-- Open Graph -->
+{% if page.title %}
+<meta property="og:title" content="{{ page.title }}"/>
+{% endif %}
+{% if site.title %}
+<meta property="og:site_name" content="{{ site.title }}"/>
+{% endif %}
+{% if page.description %}
+<meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ page.description }}{% endif %}"/>
+{% endif %}
+<meta property="og:type" content="website"/>
+{% if page.url %}
+<meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"/>
+{% endif %}
+{% if page.og-image %}
+<meta property="og:image" content="{{ site.url }}/img/{{ page.og-image }}"/>
+{% endif %}
+{% if page.og-locale %}
+<meta property="og:locale" content="{{ page.og-locale }}"/>
+{% endif %}
+
+<!-- Authors -->
+{% if site.author %}
+<meta name="author" content="{{ site.author }}" />
+{% endif %}
+<link rel="author" href="{{ "/humans.txt" | prepend: site.baseurl | prepend: site.url }}" />
+
+<!-- Icons -->
+{% include favicon-custom.html %}
+
+<!-- Canonical -->
+{% if site.url and page.url and page.lang %}
+<link rel="canonical" hreflang="{{ page.lang }}" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+{% endif %}
+
+<!-- Alternate -->
+{% assign pages = (site.pages | where: "order", page.order | where: "published", "true") %}
+{% for p in pages %}
+  {% comment %} Detect current page by language {% endcomment %}
+  {% if page.lang == p.lang %}
+    <link rel="alternate" hreflang="x-default" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  {% else %}
+    <link rel="alternate" hreflang="{{ p.lang }}" href="{{ p.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" title="{{ p.language }}">
+  {% endif %}
+{% endfor %}
+
+<!-- Styles -->
+<link rel="stylesheet" href="{{ "/css/styles.css" | prepend: site.baseurl }}">
+
+</head>

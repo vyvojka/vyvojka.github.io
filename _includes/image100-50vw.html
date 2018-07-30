@@ -1,0 +1,76 @@
+{% assign alt = include.alt %}
+{% assign basename = include.basename %}
+{% if include.extension %}
+  {% assign extension = include.extension %}
+{% else %}
+  {% assign extension = "jpg" %}
+{% endif %}
+{% assign name_ratio = "false" %}
+
+
+{% capture path_w200 %}{{ site.baseurl }}/img/{{ basename }}-w200.{{ extension }}{% endcapture %}
+{% capture path_w400 %}{{ site.baseurl }}/img/{{ basename }}-w400.{{ extension }}{% endcapture %}
+{% capture path_w600 %}{{ site.baseurl }}/img/{{ basename }}-w600.{{ extension }}{% endcapture %}
+{% capture path_w800 %}{{ site.baseurl }}/img/{{ basename }}-w800.{{ extension }}{% endcapture %}
+{% capture path_w1000 %}{{ site.baseurl }}/img/{{ basename }}-w1000.{{ extension }}{% endcapture %}
+{% capture path_w1200 %}{{ site.baseurl }}/img/{{ basename }}-w1200.{{ extension }}{% endcapture %}
+{% capture path_w1400 %}{{ site.baseurl }}/img/{{ basename }}-w1400.{{ extension }}{% endcapture %}
+{% capture path_w1600 %}{{ site.baseurl }}/img/{{ basename }}-w1600.{{ extension }}{% endcapture %}
+{% capture path_w1800 %}{{ site.baseurl }}/img/{{ basename }}-w1800.{{ extension }}{% endcapture %}
+{% capture path_w2000 %}{{ site.baseurl }}/img/{{ basename }}-w2000.{{ extension }}{% endcapture %}
+
+
+{% if basename contains "-circle" %}
+  {% assign name_ratio = "true" %}
+  <div class="crr r11 br50">
+{% endif %}
+
+{% if name_ratio == "false" and basename contains "-1by1" %}
+  {% assign name_ratio = "true" %}
+  <div class="crr r11">
+{% endif %}
+
+{% if name_ratio == "false" and basename contains "-2by1" %}
+  {% assign name_ratio = "true" %}
+  <div class="crr r21">
+{% endif %}
+
+{% if name_ratio == "false" and basename contains "-3by2" %}
+  {% assign name_ratio = "true" %}
+  <div class="crr r32">
+{% endif %}
+
+{% if name_ratio == "false" and basename contains "-4by3" %}
+  {% assign name_ratio = "true" %}
+  <div class="crr r43">
+{% endif %}
+
+{% if name_ratio == "false" and basename contains "-5by4" %}
+  {% assign name_ratio = "true" %}
+  <div class="crr r54">
+{% endif %}
+
+{% if name_ratio == "false" and basename contains "-16by9" %}
+  {% assign name_ratio = "true" %}
+  <div class="crr r169">
+{% endif %}
+
+
+  <img class="imgf" src="{{ path_w200 }}" 
+    alt="{{ alt }}" 
+    srcset="{{ path_w2000 }} 2000w, 
+        {{ path_w1800 }} 1800w, 
+        {{ path_w1600 }} 1600w, 
+        {{ path_w1400 }} 1400w, 
+        {{ path_w1200 }} 1200w, 
+        {{ path_w1000 }} 1000w, 
+        {{ path_w800 }} 800w, 
+        {{ path_w600 }} 600w, 
+        {{ path_w400 }} 400w, 
+        {{ path_w200 }} 200w" 
+    sizes="(min-width: 1000px) 50vw, 100vw">
+
+
+{% if name_ratio == "true" %}
+  </div>
+{% endif %}

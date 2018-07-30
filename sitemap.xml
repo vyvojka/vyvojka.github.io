@@ -1,0 +1,194 @@
+---
+layout: compress
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  {% comment %} Loop through index pages first {% endcomment %}
+
+  {% assign pages = site.pages | sort: "order" | where: "group" , "index" %}
+  {% for p in pages %}
+    {% if p.sitemap.exclude != "yes" %}
+      <url>
+        <loc>{{ site.url }}{{ p.url | remove: "index.html" }}</loc>
+
+        {% if p.sitemap.lastmod %}
+          <lastmod>{{ p.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+        {% elsif p.date %}
+          <lastmod>{{ p.date | date_to_xmlschema }}</lastmod>
+        {% else %}
+          <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        {% endif %}
+        {% if p.sitemap.changefreq %}
+          <changefreq>{{ p.sitemap.changefreq }}</changefreq>
+        {% else %}
+          <changefreq>monthly</changefreq>
+        {% endif %}
+        {% if p.sitemap.priority %}
+          <priority>{{ p.sitemap.priority }}</priority>
+        {% else %}
+          <priority>0.7</priority>
+        {% endif %}
+
+
+        {% comment %} Find alternatives in different languages {% endcomment %}
+
+        {% for r in pages %}
+          {% if r.sitemap.exclude != "yes" %}
+            {% if r.lang != p.lang %}
+                <xhtml:link 
+                rel="alternate" 
+                hreflang="{{ r.lang }}" 
+                href="{{ site.url }}{{ r.url | remove: "index.html" }}" 
+                />
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+        {% comment %} Include itself {% endcomment %}
+
+        {% for r in pages %}
+          {% if r.sitemap.exclude != "yes" %}
+            {% if r.lang == p.lang %}
+                <xhtml:link 
+                rel="alternate" 
+                hreflang="{{ r.lang }}" 
+                href="{{ site.url }}{{ r.url | remove: "index.html" }}" 
+                />
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+      </url>
+    {% endif %}
+  {% endfor %}
+
+
+  {% comment %} loop through About Work Contact pages {% endcomment %}
+
+  {% assign pages = site.pages | sort: 'order' %}
+  {% for p in pages %}
+    {% if p.sitemap.exclude != "yes" %}
+      {% if p.group == "about" or p.group == "work" or p.group == "contact" %}
+
+        <url>
+          <loc>{{ site.url }}{{ p.url | remove: "index.html" }}</loc>
+
+          {% if p.sitemap.lastmod %}
+            <lastmod>{{ p.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+          {% elsif p.date %}
+            <lastmod>{{ p.date | date_to_xmlschema }}</lastmod>
+          {% else %}
+            <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+          {% endif %}
+          {% if p.sitemap.changefreq %}
+            <changefreq>{{ p.sitemap.changefreq }}</changefreq>
+          {% else %}
+            <changefreq>monthly</changefreq>
+          {% endif %}
+          {% if p.sitemap.priority %}
+            <priority>{{ p.sitemap.priority }}</priority>
+          {% else %}
+            <priority>0.3</priority>
+          {% endif %}
+
+
+          {% comment %} Find alternatives in different languages {% endcomment %}
+
+          {% for r in pages %}
+            {% if r.sitemap.exclude != "yes" %}
+              {% if r.group == p.group and r.order == p.order and r.lang != p.lang %}
+                  <xhtml:link 
+                  rel="alternate" 
+                  hreflang="{{ r.lang }}" 
+                  href="{{ site.url }}{{ r.url | remove: "index.html" }}" 
+                  />
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+          {% comment %} Include itself {% endcomment %}
+
+          {% for r in pages %}
+            {% if r.sitemap.exclude != "yes" %}
+              {% if r.group == p.group and r.order == p.order and r.lang == p.lang %}
+                  <xhtml:link 
+                  rel="alternate" 
+                  hreflang="{{ r.lang }}" 
+                  href="{{ site.url }}{{ r.url | remove: "index.html" }}" 
+                  />
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+        </url>
+
+        {% endif %}
+      {% endif %}
+
+  {% endfor %}
+
+
+  {% comment %} loop through project pages {% endcomment %}
+
+  {% assign pages = site.pages | sort: 'order' %}
+  {% for p in pages %}
+    {% if p.sitemap.exclude != "yes" %}
+      {% if p.group == "project" %}
+        <url>
+          <loc>{{ site.url }}{{ p.url | remove: "index.html" }}</loc>
+
+          {% if p.sitemap.lastmod %}
+            <lastmod>{{ p.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+          {% elsif p.date %}
+            <lastmod>{{ p.date | date_to_xmlschema }}</lastmod>
+          {% else %}
+            <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+          {% endif %}
+          {% if p.sitemap.changefreq %}
+            <changefreq>{{ p.sitemap.changefreq }}</changefreq>
+          {% else %}
+            <changefreq>monthly</changefreq>
+          {% endif %}
+          {% if p.sitemap.priority %}
+            <priority>{{ p.sitemap.priority }}</priority>
+          {% else %}
+            <priority>0.5</priority>
+          {% endif %}
+
+
+          {% comment %} Find alternatives in different languages {% endcomment %}
+
+          {% for r in pages %}
+            {% if r.sitemap.exclude != "yes" %}
+              {% if r.group == p.group and r.order == p.order and r.lang != p.lang %}
+                  <xhtml:link 
+                  rel="alternate" 
+                  hreflang="{{ r.lang }}" 
+                  href="{{ site.url }}{{ r.url | remove: "index.html" }}" 
+                  />
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+
+          {% comment %} Include itself {% endcomment %}
+
+          {% for r in pages %}
+            {% if r.sitemap.exclude != "yes" %}
+              {% if r.group == p.group and r.order == p.order and r.lang == p.lang %}
+                  <xhtml:link 
+                  rel="alternate" 
+                  hreflang="{{ r.lang }}" 
+                  href="{{ site.url }}{{ r.url | remove: "index.html" }}" 
+                  />
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+        </url>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+</urlset>

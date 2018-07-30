@@ -1,0 +1,87 @@
+<footer class="p2">
+  <div class="crl">
+
+    <div class="row">
+      <div class="col cd9 ofd3">
+
+        <!-- Home button -->
+        <!-- Detect active page by url -->
+        {% if page.lang == "sk" %}
+          {% assign home_title = "Domov" %}
+        {% else %}
+          {% assign home_title = "Home" %}
+        {% endif %}
+        {% if (page.group == "index") %}
+          <a href="{{ index_url | replace:"index.html","" | prepend: site.baseurl }}" class="hm act" title="{{home_title}}">
+        {% else %}
+          <a href="{{ index_url | replace:"index.html","" | prepend: site.baseurl }}" class="hm" title="{{home_title}}">
+        {% endif %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 18 22" width="18" height="22">
+            <path fill="none" stroke="#0057FF" stroke-width="1" d="M16 20 2 20 2 10 8 2 10 2 16 10 z"></path>
+          </svg>
+        </a>
+        <!-- End of Home button -->
+
+
+        <!-- Main menu -->
+        {% assign pages = site.pages | sort: "order" %}
+        {% for p in pages %}
+          {% if p.title and p.lang == page.lang and (p.group == "about" or p.group == "work" or p.group == "contact") %}
+            <!-- Detect active page by url -->
+            {% if (page.url == p.url) or (page.group == p.children) %}
+              <a class="act" href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
+            {% else %}
+              <a href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        <!-- End of Main menu -->
+
+      </div>
+    </div>
+
+    <!-- Social links -->
+    {% if site.social-links and site.social-links != "" %}
+    <div class="row">
+      <div class="col cd9 ofd3">
+          {% for item in site.social-links %}
+            <a target="_blank" href="{{ item.url }}">{{ item.name }}</a>
+          {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    <!-- End of Social links -->
+
+
+    <div class="row pb1">
+      <div class="col cd9 ofd3">
+
+        <!-- Legal -->
+        {% if site.legal-links and site.legal-links != "" %}
+          {% for item in site.legal-links %}
+            <!-- Detect active page by url -->
+            {% if (page.url == item.url) %}
+              <a class="act" href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
+            {% else %}
+              <a href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        <!-- End of Legal -->
+
+      </div>
+    </div>
+
+
+    <!-- Copyright -->
+    <div class="row">
+      <div class="col cd9 ofd3">
+        {% if site.title %}
+          <p class="m0">&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+
+  </div>
+</footer>

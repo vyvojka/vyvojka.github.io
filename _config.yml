@@ -1,0 +1,108 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing these this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Vývojka
+subtitle: Design studio
+author: Pavol Mikuláš
+email: studib@eyebjka.cbm
+description: "Design studio Vyvojka helps companies to develop and bring to the market successful products."
+
+
+# If you're hosting your site at a Project repository on GitHub pages
+# (http://yourusername.github.io/repository-name)
+# and NOT your User repository (http://yourusername.github.io)
+# then add in the baseurl here, like this: "/repository-name"
+baseurl: "" # the subpath of your site, e.g. /blog
+
+# the base hostname & protocol for your site
+# Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
+# Used for Sitemap.xml and your RSS feed
+url: "http://www.vyvojka.com"
+
+
+# Includes links to social in the footer
+#social-links:
+#  - name: "Facebook"
+#    url: "https://www.facebook.com/pavol.mikulas.9"
+#  - name: "LinkedIn"
+#    url: "https://www.linkedin.com/in/vyvojka"
+#  - name: "Behance"
+#    url: "http://be.net/vyvojka"
+
+
+# Includes links to legal in the footer
+legal-links:
+  - name: "Terms of Service"
+    url: "/legal/terms/"
+  - name: "Privacy Policy"
+    url: "/legal/privacy/"
+
+
+timezone: Europe/Bratislava
+lang: en
+language: English
+
+# Permalinks
+# For more see: http://jekyllrb.com/docs/permalinks/
+permalink: /:title/
+
+
+# Build settings
+# Jekyll 3 now only supports Kramdown for Markdown
+kramdown:
+  # Use GitHub flavored markdown, including triple backtick fenced code blocks
+  input: GFM
+  # Disable auto-generated ID's for headings
+  auto_ids: false
+  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    # Use existing pygments syntax highlighting css
+    css_class: 'highlight'
+
+
+#theme: ""
+backgroundColor: "#fafafa"
+themeColor: "#0057ff"
+fontColor: "#050505"
+
+
+# Compress html files
+compress_html:
+  clippings: all
+  comments: all
+
+
+# Compress CSS
+sass:
+  style: compressed
+
+
+# optional, you can use in liquid tag conditionals
+development: false
+
+# Layouts
+error-layout: ""
+
+
+# Exclude these files from your production _site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CNAME
+  - _src

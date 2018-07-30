@@ -1,0 +1,60 @@
+---
+layout: compress
+---
+<!doctype html>
+{% if page.group == "index" or page.group == "profiles" or page.group == "profiles-helped" or page.group == "stories" %}
+  <html lang="{{ page.lang }}" itemscope itemtype="http://schema.org/WebPage">
+{% elsif page.group == "contact" %}
+  <html lang="{{ page.lang }}" itemscope itemtype="http://schema.org/ContactPage">
+{% elsif page.group == "about" %}
+  <html lang="{{ page.lang }}" itemscope itemtype="http://schema.org/AboutPage">
+{% else %}
+  <html lang="{{ page.lang }}">
+{% endif %}
+{% include head.html %}
+
+{% comment %} Add dev class while development {% endcomment %}
+{% assign page_class = "" %}
+
+{% if site.development == true %}
+  {% assign page_class = "dev" %}
+{% endif %}
+
+{% comment %} Add page.group class {% endcomment %}
+{% if page.group %}
+  {% if page_class == "" %}
+    {% assign page_class = page.group %}
+  {% else %}
+    {% assign page_class = page_class | append: " " | append: page.group %}
+  {% endif %}
+{% endif %}
+
+{% comment %} Add page.class {% endcomment %}
+{% if page.class %}
+  {% if page_class == "" %}
+    {% assign page_class = page.class %}
+  {% else %}
+    {% assign page_class = page_class | append: " " | append: page.class %}
+  {% endif %}
+{% endif %}
+
+<!-- Body -->
+{% if page_class != "" %}
+  <body class="{{ page_class }} loading">
+{% else %}
+  <body class="loading">
+{% endif %}
+
+{% include header.html %}
+{{ content | strip }}
+{% include footer.html %}
+
+<!-- JavaScript code placed at the end of the document so the pages load faster -->
+<script>
+  window.setTimeout(function () {
+    document.body.className = document.body.className.replace(/\bloading\b/,'loaded');
+  }, 1000);
+</script>
+
+</body>
+</html>
