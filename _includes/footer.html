@@ -1,5 +1,5 @@
-<footer class="p2">
-  <div class="crl">
+<footer class="p1">
+  <div class="ctr">
 
     <div class="row">
       <div class="col cd9 ofd3">
@@ -12,9 +12,9 @@
           {% assign home_title = "Home" %}
         {% endif %}
         {% if (page.group == "index") %}
-          <a href="{{ index_url | replace:"index.html","" | prepend: site.baseurl }}" class="hm act" title="{{home_title}}">
+          <a href="{{ index_url | replace:"index.html","" | prepend: site.baseurl }}" class="hm pyr01 act" title="{{home_title}}">
         {% else %}
-          <a href="{{ index_url | replace:"index.html","" | prepend: site.baseurl }}" class="hm" title="{{home_title}}">
+          <a href="{{ index_url | replace:"index.html","" | prepend: site.baseurl }}" class="hm pyr01" title="{{home_title}}">
         {% endif %}
           <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 18 22" width="18" height="22">
             <path fill="none" stroke="#0057FF" stroke-width="1" d="M16 20 2 20 2 10 8 2 10 2 16 10 z"></path>
@@ -29,9 +29,9 @@
           {% if p.title and p.lang == page.lang and (p.group == "about" or p.group == "work" or p.group == "contact") %}
             <!-- Detect active page by url -->
             {% if (page.url == p.url) or (page.group == p.children) %}
-              <a class="act" href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
+              <a class="pyr01 act" href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
             {% else %}
-              <a href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
+              <a class="pyr01" href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -53,24 +53,24 @@
     <!-- End of Social links -->
 
 
-    <div class="row pb1">
+    <!-- Legal -->
+    <div class="row pt05 pb05 ptd0">
       <div class="col cd9 ofd3">
 
-        <!-- Legal -->
         {% if site.legal-links and site.legal-links != "" %}
           {% for item in site.legal-links %}
             <!-- Detect active page by url -->
             {% if (page.url == item.url) %}
-              <a class="act" href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
+              <a class="pyr01 act" href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
             {% else %}
-              <a href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
+              <a class="pyr01" href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
             {% endif %}
           {% endfor %}
         {% endif %}
-        <!-- End of Legal -->
 
       </div>
     </div>
+    <!-- End of Legal -->
 
 
     <!-- Copyright -->
@@ -81,6 +81,7 @@
         {% endif %}
       </div>
     </div>
+    <!-- End of Copyright -->
 
 
   </div>

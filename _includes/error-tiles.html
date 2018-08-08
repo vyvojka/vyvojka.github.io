@@ -1,5 +1,5 @@
-<div class="px2 pt1 pb1 hgh">
-  <div class="crl">
+<div class="p1 hgh">
+  <div class="ctr">
 
     <div class="row">
       <div class="col c6">
@@ -38,11 +38,11 @@
             <div class="row">
         {% endif %}
 
-          <div class="col c3">
+          <div class="col c4">
             <a href="{{ p.url | prepend: site.baseurl }}">
               <div class="boy">
                 {% assign ttl = p.title | replace: ' ', ' ' %}
-                {% include image25vw.html basename=p.thumbnail alt=ttl %}
+                {% include image33vw.html basename=p.thumbnail alt=ttl %}
 
                 <svg class="arw w30" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 300 300" width="300" height="300">
                   <circle fill="none" stroke="#0057ff" stroke-width="3" stroke-miterlimit="10" cx="150" cy="150" r="140"></circle>
@@ -51,7 +51,7 @@
                 </svg>
               </div>
 
-              <div class="pt05 pb175">{{ p.label }}</div>
+              <div class="py05">{{ p.label }}</div>
             </a>
           </div>
 

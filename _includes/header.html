@@ -4,8 +4,8 @@
 {% assign index_subtitle = ind[0].subtitle %}
 {% assign index_url = ind[0].url %}
 
-<header class="p2">
-  <div class="crl">
+<header class="p1">
+  <div class="ctr">
     <div class="row">
 
       <div class="col cd3">
@@ -13,9 +13,9 @@
           <!-- Site name -->
           <!-- Detect active page by url -->
           {% if (page.group == "index") %}
-            <a class="pt05 pr05 pb05 act" href="{{ index_url | replace:"index.html","" | prepend: site.baseurl }}">{{ index_title }}</a>
+            <a class="pyr025 act" href="{{ index_url | replace:"index.html","" | prepend: site.baseurl }}">{{ index_title }}</a>
           {% else %}
-            <a class="pt05 pr05 pb05" href="{{ index_url | replace:"index.html","" | prepend: site.baseurl }}">{{ index_title }}</a>
+            <a class="pyr025" href="{{ index_url | replace:"index.html","" | prepend: site.baseurl }}">{{ index_title }}</a>
           {% endif %}
           <!-- End of Site name -->
 
@@ -29,9 +29,9 @@
             {% if p.title and p.lang == page.lang and (p.group == "about" or p.group == "work" or p.group == "contact") %}
               <!-- Detect active page by url -->
               {% if (page.url == p.url) or (page.group == p.children) %}
-                <a class="pt05 pr05 pb05 act" href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
+                <a class="pyr025 act" href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
               {% else %}
-                <a class="pt05 pr05 pb05" href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
+                <a class="pyr025" href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
               {% endif %}
             {% endif %}
           {% endfor %}
@@ -58,9 +58,9 @@
                 {% if twin_url and p.lang %}
                   <!-- Detect current page by language -->
                   {% if page.lang == p.lang %}
-                    <a class="pt05 pr05 pb05 act" href="{{ twin_url | replace:" index.html "," " | prepend: site.baseurl }}" hreflang="{{ p.lang }}" lang="{{ p.lang }}">{{ p.language }}</a>
+                    <a class="pyr025 act" href="{{ twin_url | replace:" index.html "," " | prepend: site.baseurl }}" hreflang="{{ p.lang }}" lang="{{ p.lang }}">{{ p.language }}</a>
                   {% else %}
-                    <a class="pt05 pr05 pb05" href="{{ twin_url | replace:" index.html "," " | prepend: site.baseurl }}" hreflang="{{ p.lang }}" lang="{{ p.lang }}">{{ p.language }}</a>
+                    <a class="pyr025" href="{{ twin_url | replace:" index.html "," " | prepend: site.baseurl }}" hreflang="{{ p.lang }}" lang="{{ p.lang }}">{{ p.language }}</a>
                   {% endif %}
                 {% endif %}
                 {% assign counter=counter | plus:1 %}
