@@ -54,7 +54,7 @@
 
 
     <!-- Legal -->
-    <div class="row pt05 pb05 ptd0">
+    <div class="row">
       <div class="col cd9 ofd3">
 
         {% if site.legal-links and site.legal-links != "" %}
@@ -74,10 +74,10 @@
 
 
     <!-- Copyright -->
-    <div class="row">
+    <div class="row pt01">
       <div class="col cd9 ofd3">
         {% if site.title %}
-          <p class="m0">&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+          &copy; {{ site.time | date: '%Y' }} {{ site.title }}
         {% endif %}
       </div>
     </div>
