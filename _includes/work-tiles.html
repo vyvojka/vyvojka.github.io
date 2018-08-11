@@ -60,11 +60,6 @@
 
         {% assign mod = k | modulo: 2 %}
 
-        {% if mod == 0 and k > 1 %}
-          {% comment %} Modulo row end {% endcomment %}
-          </div>
-        {% endif %}
-
         {% if mod == 0 %}
           {% comment %} Modulo row start {% endcomment %}
           <div class="row">
@@ -85,10 +80,10 @@
             </a>
           </div>
 
-        {% if j == is %}
-          {% comment %} modulo last row end {% endcomment %}
-          </div>
-        {% endif %}
+          {% if mod == 1 or j == is %}
+            {% comment %} Modulo row end {% endcomment %}
+            </div>
+          {% endif %}
 
         {% assign k = k | plus: 1 %}
 

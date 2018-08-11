@@ -40,13 +40,14 @@
       </div>
     </div>
 
+
     <!-- Social links -->
     {% if site.social-links and site.social-links != "" %}
     <div class="row">
       <div class="col cd9 ofd3">
-          {% for item in site.social-links %}
-            <a target="_blank" href="{{ item.url }}">{{ item.name }}</a>
-          {% endfor %}
+        {% for item in site.social-links %}
+          <a target="_blank" href="{{ item.url }}">{{ item.name }}</a>
+        {% endfor %}
       </div>
     </div>
     {% endif %}
@@ -54,22 +55,20 @@
 
 
     <!-- Legal -->
+    {% if site.legal-links and site.legal-links != "" %}
     <div class="row">
       <div class="col cd9 ofd3">
-
-        {% if site.legal-links and site.legal-links != "" %}
-          {% for item in site.legal-links %}
-            <!-- Detect active page by url -->
-            {% if (page.url == item.url) %}
-              <a class="pyr01 act" href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
-            {% else %}
-              <a class="pyr01" href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-
+        {% for item in site.legal-links %}
+          <!-- Detect active page by url -->
+          {% if (page.url == item.url) %}
+            <a class="pyr01 act" href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
+          {% else %}
+            <a class="pyr01" href="{{ item.url | prepend: site.baseurl }}">{{ item.name }}</a>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
+    {% endif %}
     <!-- End of Legal -->
 
 
