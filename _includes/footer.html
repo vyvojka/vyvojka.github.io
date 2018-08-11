@@ -56,7 +56,7 @@
 
     <!-- Legal -->
     {% if site.legal-links and site.legal-links != "" %}
-    <div class="row">
+    <div class="row cpr">
       <div class="col cd9 ofd3">
         {% for item in site.legal-links %}
           <!-- Detect active page by url -->
@@ -73,7 +73,7 @@
 
 
     <!-- Copyright -->
-    <div class="row pt01">
+    <div class="row pt01 cpr">
       <div class="col cd9 ofd3">
         {% if site.title %}
           &copy; {{ site.time | date: '%Y' }} {{ site.title }}
