@@ -26,7 +26,7 @@
     {% if p.group == "project" %}
       {% if p.lang == page.lang and p.label and p.thumbnail and p.work_tile != false %}
 
-        {% assign mod = j | modulo: 4 %}
+        {% assign mod = j | modulo: 3 %}
 
         {% if mod == 0 and  j > 1 %}
             {% comment %} modulo row end {% endcomment %}
