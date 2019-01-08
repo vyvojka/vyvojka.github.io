@@ -2,7 +2,7 @@
 layout: compress
 ---
 <!doctype html>
-{% if page.group == "index" or page.group == "profiles" or page.group == "profiles-helped" or page.group == "stories" %}
+{% if page.group == "index" or page.group == "work" or page.group == "project" or page.group == "legal" %}
   <html lang="{{ page.lang }}" itemscope itemtype="http://schema.org/WebPage">
 {% elsif page.group == "contact" %}
   <html lang="{{ page.lang }}" itemscope itemtype="http://schema.org/ContactPage">
@@ -40,21 +40,14 @@ layout: compress
 
 <!-- Body -->
 {% if page_class != "" %}
-  <body class="{{ page_class }} loading">
+  <body class="{{ page_class }}">
 {% else %}
-  <body class="loading">
+  <body>
 {% endif %}
 
 {% include header.html %}
 {{ content | strip }}
 {% include footer.html %}
-
-<!-- JavaScript code placed at the end of the document so the pages load faster -->
-<script>
-  window.setTimeout(function () {
-    document.body.className = document.body.className.replace(/\bloading\b/,'loaded');
-  }, 1000);
-</script>
 
 </body>
 </html>
